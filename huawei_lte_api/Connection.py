@@ -4,6 +4,7 @@ import dicttoxml
 import xmltodict
 import requests
 from huawei_lte_api.enums.client import ResponseCodeEnum
+from huawei_lte_api.enums.user import SessionErrorEnum
 from huawei_lte_api.exceptions import \
     ResponseErrorException, \
     ResponseErrorLoginRequiredException, \
@@ -43,7 +44,9 @@ class Connection:
             ResponseCodeEnum.ERROR_SYSTEM_NO_RIGHTS: 'No rights (needs login)',
             ResponseCodeEnum.ERROR_SYSTEM_NO_SUPPORT: 'No support',
             ResponseCodeEnum.ERROR_SYSTEM_UNKNOWN: 'Unknown',
-            ResponseCodeEnum.ERROR_SYSTEM_CSFR: 'Session error'
+            SessionErrorEnum.WRONG_TOKEN: 'Token error',
+            SessionErrorEnum.WRONG_SESSION: 'Session error',
+            SessionErrorEnum.WRONG_SESSION_TOKEN: 'Session token error',
         }
 
         error_code_to_exception = {
@@ -51,7 +54,9 @@ class Connection:
             ResponseCodeEnum.ERROR_SYSTEM_NO_RIGHTS: ResponseErrorLoginRequiredException,
             ResponseCodeEnum.ERROR_SYSTEM_NO_SUPPORT: ResponseErrorNotSupportedException,
             ResponseCodeEnum.ERROR_SYSTEM_UNKNOWN:  ResponseErrorException,
-            ResponseCodeEnum.ERROR_SYSTEM_CSFR: ResponseErrorLoginCsrfException
+            SessionErrorEnum.WRONG_TOKEN: ResponseErrorLoginCsrfException,
+            SessionErrorEnum.WRONG_SESSION: ResponseErrorLoginCsrfException,
+            SessionErrorEnum.WRONG_SESSION_TOKEN: ResponseErrorLoginCsrfException,
         }
         if 'error' in data:
             error_code = int(data['error']['code'])
