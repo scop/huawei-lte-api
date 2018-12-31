@@ -9,7 +9,7 @@ from huawei_lte_api.exceptions import \
     ResponseErrorLoginRequiredException, \
     ResponseErrorNotSupportedException, \
     ResponseErrorSystemBusyException, \
-    ResponseErrorLoginCsfrException
+    ResponseErrorLoginCsrfException
 
 
 class Connection:
@@ -51,7 +51,7 @@ class Connection:
             ResponseCodeEnum.ERROR_SYSTEM_NO_RIGHTS: ResponseErrorLoginRequiredException,
             ResponseCodeEnum.ERROR_SYSTEM_NO_SUPPORT: ResponseErrorNotSupportedException,
             ResponseCodeEnum.ERROR_SYSTEM_UNKNOWN:  ResponseErrorException,
-            ResponseCodeEnum.ERROR_SYSTEM_CSFR: ResponseErrorLoginCsfrException
+            ResponseCodeEnum.ERROR_SYSTEM_CSFR: ResponseErrorLoginCsrfException
         }
         if 'error' in data:
             error_code = int(data['error']['code'])

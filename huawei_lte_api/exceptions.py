@@ -16,8 +16,12 @@ class ResponseErrorSystemBusyException(ResponseErrorException):
     pass
 
 
-class ResponseErrorLoginCsfrException(ResponseErrorException):
+class ResponseErrorLoginCsrfException(ResponseErrorException):
     pass
+
+
+# Deprecated misspelling
+ResponseErrorLoginCsfrException = ResponseErrorLoginCsrfException
 
 
 class LoginErrorUsernameWrongException(ResponseErrorException):
