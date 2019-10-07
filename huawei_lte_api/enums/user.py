@@ -7,13 +7,15 @@ class PasswordTypeEnum(enum.IntEnum):
     SHA256 = 4
 
 
-@enum.unique
+# not @enum.unique as long as the deprecated ORERRUN spelling is there
 class LoginErrorEnum(enum.IntEnum):
     USERNAME_WRONG = 108001
     PASSWORD_WRONG = 108002
     ALREADY_LOGIN = 108003
     USERNAME_PWD_WRONG = 108006
-    USERNAME_PWD_ORERRUN = 108007
+    USERNAME_PWD_OVERRUN = 108007
+    """Deprecated misspelling, use USERNAME_PWD_OVERRUN instead."""
+    USERNAME_PWD_ORERRUN = USERNAME_PWD_OVERRUN
     USERNAME_PWD_MODIFY = 115002
 
 
